@@ -4,4 +4,4 @@ While developing an analytics project to forecast Mexican truck sales by vehicle
 
 The data is then used to validate sales forecasts against observed new data, and if necessary, re-calibrate the models.
 
-Many thanks to [Tabula-py](https://pypi.org/project/tabula-py/) developers for developing the PDF-to-dataframe functionality
+Many thanks to [Tabula-py](https://pypi.org/project/tabula-py/) developers the PDF-to-dataframe functionality
