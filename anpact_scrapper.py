@@ -3,6 +3,7 @@ import numpy as np
 import datetime as dt
 import tabula
 import pymongo
+from credentials import mongodb_user, mongodb_password, mongodb_cluster, mongodb_database
 
 def get_last_ANPACT_records():
     
@@ -39,10 +40,8 @@ def get_last_ANPACT_records():
 def update_ANPACTdb_last_records():
     
     #Set connection with MongoDB
-    conn = 'mongodb://localhost:27017'
+    conn = f'mongodb+srv://{mongodb_user}:{mongodb_password}@{mongodb_cluster}.qf8nk.mongodb.net/{mongodb_database}?retryWrites=true&w=majority'
     client = pymongo.MongoClient(conn)
-
-    # Define the 'mexican_truckDB' database in Mongo
     db = client.mexican_truckDB
     
     #Scrap latest ANPACT reports
@@ -80,3 +79,26 @@ def update_ANPACTdb_last_records():
         print('You may have skipped scrapping last month´s report... :O')
         
     return print('----')
+
+def get_ANPACTdb_full_data():
+    
+    #Set connection with MongoDB
+    conn = f'mongodb+srv://{mongodb_user}:{mongodb_password}@{mongodb_cluster}.qf8nk.mongodb.net/{mongodb_database}?retryWrites=true&w=majority'
+    client = pymongo.MongoClient(conn)
+    db = client.mexican_truckDB
+    
+    #get records from database
+    records= db.sales.find()
+    records= list(records)
+
+    #cnovert and format in pandas dataframe
+    records_dic={}
+    for i in range(0, len(records)):
+        record= records[i]['sales']
+        record['date'] = records[i]['date']
+        records_dic[i] = record
+
+    data= pd.DataFrame.from_dict(records_dic, orient= 'index')
+    data= data[np.append(['date'], data.columns[:-1])]
+    
+    return data
