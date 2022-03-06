@@ -78,7 +78,7 @@ def update_ANPACTdb_last_records():
                 'truck4_5_ANPACT': new_record['truck4_5_ANPACT'][0],
                 'truck6': new_record['truck6'][0],
                 'truck7': new_record['truck7'][0],
-                'truck8': d['truck8'][0],
+                'truck8': new_record['truck8'][0],
                 'truckTractor': new_record['truckTractor'][0],
                 'bus5_6': new_record['bus5_6'][0],
                 'bus7': new_record['bus7'][0],
