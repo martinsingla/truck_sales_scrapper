@@ -92,6 +92,8 @@ def update_ANPACTdb_last_records():
         print('New ANPACT report published, but last record does not match new record.')
         print('You may have skipped scrapping last month´s report... :O')
         
+    client.close()
+    
     return print('----')
 
 def get_ANPACTdb_full_data():
@@ -114,5 +116,7 @@ def get_ANPACTdb_full_data():
 
     data= pd.DataFrame.from_dict(records_dic, orient= 'index')
     data= data[np.append(['date'], data.columns[:-1])]
+    
+    client.close()
     
     return data
