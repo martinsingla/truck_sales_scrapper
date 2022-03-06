@@ -5,7 +5,7 @@ import tabula
 import pymongo
 from credentials import mongodb_user, mongodb_password, mongodb_cluster, mongodb_database
 
-def get_last_ANPACT_records():
+def scrap_last_ANPACT_records():
     
     url= 'https://www.anpact.com.mx/documentos/anpact/BOLETIN-ESTADISTICO-ANPACT.pdf' 
     dfs= tabula.read_pdf(url, pages='1')
@@ -45,7 +45,7 @@ def update_ANPACTdb_last_records():
     db = client.mexican_truckDB
     
     #Scrap latest ANPACT reports
-    new_record = get_last_ANPACT_records()
+    new_record = scrap_last_ANPACT_records()
 
     #Get last data point from the databse
     last_record = db.sales.find_one(sort=[( '_id', pymongo.DESCENDING )])
