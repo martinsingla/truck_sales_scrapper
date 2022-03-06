@@ -1,3 +1,17 @@
+##############################################################
+# scrap_last_ANPACT_records()
+# Param: None
+# Output: pandas dataframe w/ 1 row containing latest ANPACT report data
+
+# update_ANPACTdb_last_records()
+# Param: None
+# Output: Updates Mongo database in case new ANPACT data identified
+
+# get_ANPACTdb_full_data()
+# Param: None
+# Output: Full dataset w/ historic CV sales data
+##############################################################
+
 import pandas as pd
 import numpy as np
 import datetime as dt
